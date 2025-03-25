@@ -7,10 +7,10 @@ import "./Whitelist.sol";
 
 contract CryptoDevs is ERC721Enumerable, Ownable {
     //  _price is the price of one Crypto Dev NFT
-    uint256 constant public _price = 0.001 ether;
+    uint256 public constant _price = 0.001 ether;
 
     // Max number of CryptoDevs that can ever exist
-    uint256 constant public maxTokenIds = 20;
+    uint256 public constant maxTokenIds = 20;
 
     // Whitelist contract instance
     Whitelist whitelist;
@@ -20,12 +20,12 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
     uint256 public reservedTokensClaimed = 0;
 
     /**
-      * @dev ERC721 constructor takes in a `name` and a `symbol` to the token collection.
-      * name in our case is `Crypto Devs` and symbol is `CD`.
-      * Constructor for Crypto Devs takes in the baseURI to set _baseTokenURI for the collection.
-      * It also initializes an instance of whitelist interface.
-      */
-    constructor (address whitelistContract) ERC721("Crypto Devs", "CD") Ownable(msg.sender) {
+     * @dev ERC721 constructor takes in a `name` and a `symbol` to the token collection.
+     * name in our case is `Crypto Devs` and symbol is `CD`.
+     * Constructor for Crypto Devs takes in the baseURI to set _baseTokenURI for the collection.
+     * It also initializes an instance of whitelist interface.
+     */
+    constructor(address whitelistContract) ERC721("Crypto Devs", "CD") Ownable(msg.sender) {
         whitelist = Whitelist(whitelistContract);
         reservedTokens = whitelist.maxWhitelistedAddresses();
     }
@@ -48,13 +48,13 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
     }
 
     /**
-    * @dev withdraw sends all the ether in the contract
-    * to the owner of the contract
-      */
-    function withdraw() public onlyOwner  {
+     * @dev withdraw sends all the ether in the contract
+     * to the owner of the contract
+     */
+    function withdraw() public onlyOwner {
         address _owner = owner();
         uint256 amount = address(this).balance;
-        (bool sent, ) =  _owner.call{value: amount}("");
+        (bool sent,) = _owner.call{value: amount}("");
         require(sent, "Failed to send Ether");
     }
 }

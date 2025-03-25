@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-
 contract Whitelist {
-
     // Max number of whitelisted addresses allowed
     uint8 public maxWhitelistedAddresses;
 
@@ -17,12 +15,12 @@ contract Whitelist {
     // Setting the Max number of whitelisted addresses
     // User will put the value at the time of deployment
     constructor(uint8 _maxWhitelistedAddresses) {
-        maxWhitelistedAddresses =  _maxWhitelistedAddresses;
+        maxWhitelistedAddresses = _maxWhitelistedAddresses;
     }
 
     /**
-        addAddressToWhitelist - This function adds the address of the sender to the
-        whitelist
+     * addAddressToWhitelist - This function adds the address of the sender to the
+     *     whitelist
      */
     function addAddressToWhitelist() public {
         // check if the user has already been whitelisted
@@ -34,5 +32,4 @@ contract Whitelist {
         // Increase the number of whitelisted addresses
         numAddressesWhitelisted += 1;
     }
-
 }
